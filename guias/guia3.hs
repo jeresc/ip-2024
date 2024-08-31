@@ -19,7 +19,6 @@ parcialK :: Integer -> Integer
 parcialK = parcialG . parcialF
 
 -- 2.a)
-
 absoluto :: Integer -> Integer
 absoluto n | n >= 0 = n
            | otherwise = -n
@@ -133,3 +132,17 @@ type EsBisiesto = Bool
 
 bisiesto :: Año -> EsBisiesto
 bisiesto año = not ( mod año 4 /= 0 || (mod año 100 == 0 && mod año 400 /= 0) )
+
+-- 7)
+type Coordenada3d = (Float, Float, Float)
+distanciaManhattan :: Coordenada3d -> Coordenada3d -> Float
+distanciaManhattan (px, py, pz) (qx, qy, qz) = abs (px-qx) + abs (py-qy) + abs (pz-qz)
+
+-- 8)
+comparar :: Integer -> Integer -> Integer
+comparar a b | sumaUltimosDosDigitos a == sumaUltimosDosDigitos b = 0
+             | sumaUltimosDosDigitos a < sumaUltimosDosDigitos b = 1
+             | otherwise = -1
+
+sumaUltimosDosDigitos :: Integer -> Integer
+sumaUltimosDosDigitos n = mod (abs n) 10 + mod (abs n `div` 10) 10
