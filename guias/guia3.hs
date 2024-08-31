@@ -98,7 +98,12 @@ sumarSoloMultiplos (x,y,z) n | x `mod` n == 0 && y `mod` n == 0 && z `mod` n == 
                              | x `mod` n == 0 && y `mod` n == 0 = x + y
                              | x `mod` n == 0 && z `mod` n == 0 = x + z
                              | y `mod` n == 0 && z `mod` n == 0 = y + z
+                             | y `mod` n == 0 = y
+                             | x `mod` n == 0 = x
+                             | z `mod` n == 0 = z
                              | otherwise = 0
+-- sumarSoloMultiplos (a, b, c) d = sum [x | x <- [a, b, c], x `mod` d == 0]
+
 
 -- f)
 posPrimerPar :: Terna -> Integer
