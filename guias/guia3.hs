@@ -14,9 +14,11 @@ parcialG n | n == 8 = 16
 -- c)
 parcialH :: Integer -> Integer
 parcialH = parcialF . parcialG
+-- parcialH n = parcialF (parcialG n)
 
 parcialK :: Integer -> Integer
 parcialK = parcialG . parcialF
+-- parcialK n = parcialG (parcialF n)
 
 -- 2.a)
 absoluto :: Integer -> Integer
