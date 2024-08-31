@@ -1,0 +1,17 @@
+cabal-version:       >=1.10
+name:                guias
+version:             0.1.0.0
+build-type:          Simple
+
+library
+  exposed-modules:     Funciones
+  hs-source-dirs:      03
+  build-depends:       base >=4.7 && <5
+  default-language:    Haskell2010
+
+test-suite guia3
+  type:                exitcode-stdio-1.0
+  main-is:             Spec.hs
+  hs-source-dirs:      03/test
+  build-depends:       base >=4.7 && <5, hspec, guias
+  default-language:    Haskell2010

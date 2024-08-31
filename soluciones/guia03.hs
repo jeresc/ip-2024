@@ -1,4 +1,3 @@
-
 -- 1.a)
 parcialF :: Integer -> Integer
 parcialF 1 = 8
@@ -153,3 +152,4 @@ comparar a b | sumaUltimosDosDigitos a == sumaUltimosDosDigitos b = 0
 
 sumaUltimosDosDigitos :: Integer -> Integer
 sumaUltimosDosDigitos n = mod (abs n) 10 + mod (abs n `div` 10) 10
+
