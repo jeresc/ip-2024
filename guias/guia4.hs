@@ -18,3 +18,14 @@ esDivisible :: Integer -> Integer -> Bool
 
 esDivisible x y = x == 0 || (x >= y && esDivisible (x - y) y)
 
+-- 4)
+sumaImpares :: Integer -> Integer
+sumaImpares 0 = 0
+sumaImpares n = (n*2 - 1) + sumaImpares (n-1)
+
+-- 5)
+medioFact :: Integer -> Integer
+medioFact 0 = 1
+medioFact 1 = 1
+medioFact n = n * medioFact (n-2)
+
