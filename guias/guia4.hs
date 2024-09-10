@@ -12,11 +12,13 @@ parteEntera n | 0 <= n && n < 1 = 0
 
 -- 3)
 esDivisible :: Integer -> Integer -> Bool
-{- esDivisible x y | x == 0 = True
-                | x < y = False
-                | otherwise = esDivisible (x-y) y -}
-
 esDivisible x y = x == 0 || (x >= y && esDivisible (x - y) y)
+
+{-
+esDivisible x y | x == 0 = True
+                | x < y = False
+                | otherwise = esDivisible (x-y) y
+-}
 
 -- 4)
 sumaImpares :: Integer -> Integer
@@ -111,4 +113,12 @@ sumaDoble n m = sumaInterior n m + sumaDoble (n - 1) m
 sumaInterior :: Integer -> Integer -> Integer
 sumaInterior n 0 = 0
 sumaInterior n m = n ^ m + sumaInterior n (m - 1)
+
+-- 14)
+sumaPotencias :: Integer -> Integer -> Integer -> Integer
+sumaPotencias q n m = potencias q n * potencias q m
+
+potencias :: Integer -> Integer -> Integer
+potencias q 1 = q
+potencias q n = potencias q (n - 1) * (q ^ n)
 
