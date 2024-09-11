@@ -118,7 +118,31 @@ sumaInterior n m = n ^ m + sumaInterior n (m - 1)
 sumaPotencias :: Integer -> Integer -> Integer -> Integer
 sumaPotencias q n m = potencias q n * potencias q m
 
+-- (q ^ 1 + q ^ 2 + .. q ^ n) * (q ^ 1 + q ^ 2 + .. q ^ m)
+
 potencias :: Integer -> Integer -> Integer
 potencias q 1 = q
 potencias q n = potencias q (n - 1) * (q ^ n)
 
+-- 15)
+sumaRacionales :: Integer -> Integer -> Float
+sumaRacionales 0 _ = 0
+sumaRacionales p q = racionales p q + sumaRacionales (p-1) q
+ 
+racionales :: Integer -> Integer -> Float
+racionales _ 0 = 0
+racionales p q = fromIntegral p / fromIntegral q + racionales p (q-1)
+ 
+-- 16)
+menorDivisor :: Integer -> Integer
+menorDivisor n = menorDivisorHasta n 2
+ 
+menorDivisorHasta :: Integer -> Integer -> Integer
+menorDivisorHasta n i | mod n i == 0 = i
+                      | otherwise = menorDivisorHasta n (i+1)
+
+{-
+maximoComunDivisor::Integer -> Integer -> Integer
+maximoComunDivisor n 0 = n
+maximoComunDivisor n m = maximoComunDivisor m (mod n m)
+-}
