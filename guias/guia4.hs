@@ -133,16 +133,39 @@ racionales :: Integer -> Integer -> Float
 racionales _ 0 = 0
 racionales p q = fromIntegral p / fromIntegral q + racionales p (q-1)
  
--- 16)
+-- 16.a)
 menorDivisor :: Integer -> Integer
 menorDivisor n = menorDivisorHasta n 2
  
 menorDivisorHasta :: Integer -> Integer -> Integer
 menorDivisorHasta n i | mod n i == 0 = i
                       | otherwise = menorDivisorHasta n (i+1)
+-- 16.b)
+esPrimo :: Integer -> Bool
+esPrimo n = menorDivisor n == n
 
-{-
+-- 16.c)
+sonCoprimos :: Integer -> Integer -> Bool
+sonCoprimos n m = maximoComunDivisor n m == 1
+
 maximoComunDivisor::Integer -> Integer -> Integer
 maximoComunDivisor n 0 = n
 maximoComunDivisor n m = maximoComunDivisor m (mod n m)
--}
+
+-- 16.d)
+nEsimoPrimo :: Integer -> Integer
+nEsimoPrimo n = nEsimoPrimoDesde n 2 0
+
+nEsimoPrimoDesde :: Integer -> Integer -> Integer -> Integer
+nEsimoPrimoDesde n i c | c == n = i - 1
+                       | esPrimo i = nEsimoPrimoDesde n (i+1) (c+1)
+                       | otherwise = nEsimoPrimoDesde n (i+1) c
+
+-- 17)
+esFibonnaci :: Integer -> Bool
+esFibonnaci n = esFibonnaciAux n 0 1
+
+esFibonnaciAux :: Integer -> Integer -> Integer -> Bool
+esFibonnaciAux n a b | n == a = True
+                     | n < a = False
+                     | otherwise = esFibonnaciAux n b (a+b)
