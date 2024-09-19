@@ -143,6 +143,7 @@ menorDivisorHasta n i | mod n i == 0 = i
 -- 16.b)
 esPrimo :: Integer -> Bool
 esPrimo n = menorDivisor n == n
+-- esPrimo n = n > 1 && all (\x -> n `mod` x /= 0) [2..(floor (sqrt (fromIntegral n)))]
 
 -- 16.c)
 sonCoprimos :: Integer -> Integer -> Bool

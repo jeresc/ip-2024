@@ -11,7 +11,7 @@ ultimo (t:ts) | longitud ts == 0 = t
 
 -- 1.3)
 principio :: [t] -> [t]
-principio [] = []
+principio [t] = []
 principio (t:ts) = t : principio ts
 
 -- 1.4)
@@ -110,19 +110,24 @@ sumarElUltimo ts = sumarN (ultimo ts) ts
 -- 3.7)
 pares :: [Integer] -> [Integer]
 pares [] = []
-pares (x:xs) | mod x 2 == 0 = x : pares xs
-             | otherwise = pares xs
+pares (x:xs)
+  | mod x 2 == 0 = x : pares xs
+  | otherwise = pares xs
 
 -- 3.8)
 multiplosDeN :: Integer -> [Integer] -> [Integer]
 multiplosDeN _ [] = []
-multiplosDeN n (x:xs) | mod x n == 0 = x : multiplosDeN n xs
-                      | otherwise = multiplosDeN n xs
+multiplosDeN n (x:xs)
+  | mod x n == 0 = x : multiplosDeN n xs
+  | otherwise = multiplosDeN n xs
 
 -- 3.9) Merge Sort
 ordenar :: [Integer] -> [Integer]
 ordenar []  = []
 ordenar [x] = [x]
+ordernar xs = maximo xs : ordenar (quitar (maximo xs) xs)
+
+{-
 ordenar xs  = juntar (ordenar ys) (ordenar zs)
   where
   (ys,zs)     = partirALaMitad xs
@@ -136,4 +141,11 @@ juntar [] ys = ys
 juntar (x:xs) (y:ys)
   | x <= y = x : juntar xs (y:ys)
   | otherwise = y : juntar (x:xs) ys
+-}
 
+-- 4.a)
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos (x:xs)
+  | x == ' ' && head xs == ' ' = sacarBlancosRepetidos xs
+  | otherwise = x : sacarBlancosRepetidos xs
