@@ -74,18 +74,57 @@ problema vallaMenosVencida (arquerosPorEquipo: seq<String X String>, goles: seq<
 
 -}
 
+type ArquerosPorEquipo = [(String, String)]
+type Goles = [Int]
+
+-- Funciones auxiliares :p
+
+division :: Int -> Int -> Float
+division a b = fromIntegral a / fromIntegral b
+
+tieneRepetidos :: Eq a => [a] -> Bool
+tieneRepetidos [] = False
+tieneRepetidos (x:xs)
+  | x `elem` xs = True
+  | otherwise   = tieneRepetidos xs
+
+aplanarDuplas :: [(t,t)] -> [t]
+aplanarDuplas [] = []
+aplanarDuplas ((x,y):xs) = x : y : aplanarDuplas xs
+
+sumatoria :: [Int] -> Int
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
+menor :: [Int] -> Int
+menor [x] = x
+menor (x:xs)
+  | x <= menor xs = x
+  | otherwise = menor xs
+
 -- Ejercicio 1
 atajaronSuplentes :: [(String, String)] -> [Int] -> Int -> Int
-atajaronSuplentes _ _ _ = 0
+atajaronSuplentes _ goles totalGolesTorneo = totalGolesTorneo - sumatoria goles
 
 -- Ejercicio 2
 equiposValidos :: [(String, String)] -> Bool
-equiposValidos _ = True
+equiposValidos [] = True
+equiposValidos ((x,y):xs) = not ( tieneRepetidos ( aplanarDuplas arquerosPorEquipo ) ) && x /= y && equiposValidos xs
+  where arquerosPorEquipo = (x,y):xs
 
 -- Ejercicio 3
 porcentajeDeGoles :: String -> [(String, String)] -> [Int] -> Float
-porcentajeDeGoles _ _ _ = 0
+porcentajeDeGoles arquero arquerosPorEquipo goles = ((cuantosGolesArquero arquero arquerosPorEquipo goles) `division` totalGoles) * 100
+  where totalGoles = sumatoria goles
+
+cuantosGolesArquero :: String -> [(String, String)] -> [Int] -> Int
+cuantosGolesArquero arquero ((x,y):xs) (g:gs)
+  | arquero == y = g
+  | otherwise = cuantosGolesArquero arquero xs gs
 
 -- Ejercicio 4
 vallaMenosVencida :: [(String, String)] -> [Int] -> String
-vallaMenosVencida _ _ = ""
+vallaMenosVencida (e:es) (g:gs)
+  | g == menor (g:gs) = arquero
+  | otherwise = vallaMenosVencida es gs
+  where arquero = snd e
