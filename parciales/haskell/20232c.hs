@@ -76,41 +76,16 @@ problema vallaMenosVencida (arquerosPorEquipo: seq<String X String>, goles: seq<
 
 -- 1.
 atajaronSuplentes :: [(String, String)] -> [Int] -> Int -> Int
-atajaronSuplentes _ goles totalGolesTorneo = totalGolesTorneo - atajaronSuplentesAux goles
-
-atajaronSuplentesAux :: [Int] -> Int
-atajaronSuplentesAux [] = 0
-atajaronSuplentesAux (x:xs) = x + atajaronSuplentesAux xs
-
+atajaronSuplentes _ _ _ = 0
 
 -- 2.
 equiposValidos :: [(String, String)] -> Bool
-equiposValidos [] = True
-equiposValidos ((x, y):xs) = equipoValido && equiposValidos xs
-  where equipoValido = not (elem x (y : equiposValidosAux xs)) && not (elem y (x : equiposValidosAux xs))
-
-equiposValidosAux :: [(String, String)] -> [String]
-equiposValidosAux [] = []
-equiposValidosAux ((x, y):xs) = x : y : equiposValidosAux xs
-
+equiposValidos _ = True
 
 -- 3.
 porcentajeDeGoles :: String -> [(String, String)] -> [Int] -> Float
-porcentajeDeGoles arquero arquerosPorEquipo goles = (golesRecibidosArquero * 100) `division` atajaronSuplentesAux goles
-  where golesRecibidosArquero = porcentajeDeGolesAux arquero arquerosPorEquipo goles
-
-porcentajeDeGolesAux :: String -> [(String, String)] -> [Int] -> Int
-porcentajeDeGolesAux arquero ((x, y):xs) (z:zs)
-  | arquero == y = z
-  | otherwise = porcentajeDeGolesAux arquero xs zs
-
-division :: Int -> Int -> Float
-division a b = fromIntegral a / fromIntegral b
-
+porcentajeDeGoles _ _ _ = 0
 
 -- 4.
 vallaMenosVencida :: [(String, String)] -> [Int] -> String
-vallaMenosVencida [(x,y)] [z] = y
-vallaMenosVencida ((x, y):xs) (z:zs)
-  | z < porcentajeDeGolesAux (vallaMenosVencida xs zs) xs zs = y
-  | otherwise = vallaMenosVencida xs zs
+vallaMenosVencida _ _ = ""
