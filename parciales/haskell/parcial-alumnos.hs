@@ -1,4 +1,5 @@
 {-
+2024 TN Primer Cuatrimestre
 
 La Unidad de Tecnologías de la Información (UTI) de nuestra Facultad nos ha encargado que desarrollemos un nuevo sistema para el registro de alumnos. En este sistema se guarda la información de cada alumno, que está representada como una tupla de dos elementos: el primero es el nombre completo del alumno y el segundo una lista con las notas de los finales que rindió.
 

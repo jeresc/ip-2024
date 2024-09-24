@@ -1,5 +1,8 @@
 {-
+2023 Segundo Cuatrimestre
+
 Introducción a la Programación
+
 Primer Parcial - Turno Mañana
 * El parcial se aprueba con 6 puntos
 * Podrás utilizar las siguientes funciones del prelude

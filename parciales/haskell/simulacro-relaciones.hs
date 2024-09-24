@@ -1,3 +1,5 @@
+-- Simulacro 2023 2do Cuatrimestre
+
 type Relaciones = [(String, String)]
 
 -- Funciones Auxiliares :s
