@@ -74,18 +74,18 @@ problema vallaMenosVencida (arquerosPorEquipo: seq<String X String>, goles: seq<
 
 -}
 
--- 1.
+-- Ejercicio 1
 atajaronSuplentes :: [(String, String)] -> [Int] -> Int -> Int
 atajaronSuplentes _ _ _ = 0
 
--- 2.
+-- Ejercicio 2
 equiposValidos :: [(String, String)] -> Bool
 equiposValidos _ = True
 
--- 3.
+-- Ejercicio 3
 porcentajeDeGoles :: String -> [(String, String)] -> [Int] -> Float
 porcentajeDeGoles _ _ _ = 0
 
--- 4.
+-- Ejercicio 4
 vallaMenosVencida :: [(String, String)] -> [Int] -> String
 vallaMenosVencida _ _ = ""
