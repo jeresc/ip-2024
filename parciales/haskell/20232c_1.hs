@@ -69,7 +69,7 @@ A continuación te dejamos una estructura básica para resolver los ejercicios. 
 type Formulas = [(String, String)]
 type Votos = [Int]
 
--- Funciones auxiliares B)
+-- Funciones Auxiliares B)
 
 division :: Int -> Int -> Float
 division a b = fromIntegral a / fromIntegral b

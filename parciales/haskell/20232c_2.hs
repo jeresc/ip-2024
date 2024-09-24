@@ -77,7 +77,7 @@ problema vallaMenosVencida (arquerosPorEquipo: seq<String X String>, goles: seq<
 type ArquerosPorEquipo = [(String, String)]
 type Goles = [Int]
 
--- Funciones auxiliares :p
+-- Funciones Auxiliares :p
 
 division :: Int -> Int -> Float
 division a b = fromIntegral a / fromIntegral b
