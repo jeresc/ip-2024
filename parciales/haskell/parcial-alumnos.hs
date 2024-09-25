@@ -43,26 +43,68 @@ problema seGraduoConHonores (registro: seq⟨seq⟨Char⟩ x seq⟨Z⟩⟩, cant
 Ejercicio 5 (1 punto)
 
 Conteste marcando la opción correcta. El Testing es una técnica de verificación que sirve para:
-- Demostrar que un programa es correcto.
-- Probar propiedades de un programa.
-- Encontrar fallas en un programa.
+- [ ] Demostrar que un programa es correcto.
+- [ ] Probar propiedades de un programa.
+- [X] Encontrar fallas en un programa.
 
 TEMA 2
 -}
 
+-- Funciones Auxiliares :p
+
+sumatoria :: [Int] -> Int
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
+promedio :: [Int] -> Float
+promedio nums = fromIntegral (sumatoria nums) / fromIntegral (length nums)
+
+pertenece :: Eq a => a -> [a] -> Bool
+pertenece _ [] = False
+pertenece x (y:ys) = x == y || pertenece x ys
+
+absoluto :: Float -> Float
+absoluto x
+  | x < 0 = -x
+  | otherwise = x
 
 -- Ejercicio 1
 aproboMasDeNMaterias :: [(String, [Int])] -> String -> Int -> Bool
-aproboMasDeNMaterias _ _ _ = True
+aproboMasDeNMaterias registro alumno n = contarAprobadas (notasDeAlumno registro alumno) > n
+
+notasDeAlumno :: [(String, [Int])] -> String -> [Int]
+notasDeAlumno [] _ = []
+notasDeAlumno ((nombre, notas):xs) alumno
+  | nombre == alumno = notas
+  | otherwise = notasDeAlumno xs alumno
+
+contarAprobadas :: [Int] -> Int
+contarAprobadas [] = 0
+contarAprobadas (x:xs)
+  | x >= 4 = 1 + contarAprobadas xs
+  | otherwise = contarAprobadas xs
 
 -- Ejercicio 2
 buenosAlumnos:: [(String, [Int])] -> [String]
-buenosAlumnos _ = [""]
+buenosAlumnos [] = []
+buenosAlumnos ((nombre, notas):xs)
+  | promedio notas >= 8 && not (tieneAplazos notas) = nombre : buenosAlumnos xs
+  | otherwise = buenosAlumnos xs
+
+tieneAplazos :: [Int] -> Bool
+tieneAplazos [] = False
+tieneAplazos (nota:notas) = nota < 4 || tieneAplazos notas
 
 -- Ejercicio 3
 mejorPromedio:: [(String, [Int])] -> String
-mejorPromedio _ = ""
+mejorPromedio [(nombre, notas)] = nombre
+mejorPromedio ((nombre, notas): (nombre2, notas2) :xs)
+  | promedio notas >= promedio notas2 = mejorPromedio ((nombre, notas):xs)
+  | otherwise = mejorPromedio ((nombre2, notas2):xs)
 
 -- Ejercicio 4
 seGraduoConHonores :: [(String, [Int])] -> Int -> String -> Bool
-seGraduoConHonores _ _ _ = True
+seGraduoConHonores registro cantidadDeMateriasDeLaCarrera alumno = aproboMasDeNMaterias registro alumno (cantidadDeMateriasDeLaCarrera - 1) && pertenece alumno (buenosAlumnos registro) && diferencia < 1
+  where promedioAlumno = promedio (notasDeAlumno registro alumno)
+        promedioMasAlto = notasDeAlumno registro (mejorPromedio registro)
+        diferencia = absoluto (promedioAlumno - promedio promedioMasAlto)
