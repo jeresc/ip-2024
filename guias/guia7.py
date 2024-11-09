@@ -1,4 +1,5 @@
 import numpy as np
+import random
 
 
 # Ejercicio 1.6
@@ -9,7 +10,7 @@ def ordenados(arr):
     return True
 
 
-input = [
+matrix = [
     [1, 2, 3, 4, 5],
     [6, 7, 8, 9, 10],
     [11, 12, 13, 14, 15],
@@ -60,8 +61,8 @@ def transpuesta(matrix):
     # return [columna(matrix, i) for i in range(len(matrix[0]))]
 
 
-print(np.matrix(input), "\n")
-print(np.matrix(transpuesta(input)))
+print(np.matrix(matrix), "\n")
+print(np.matrix(transpuesta(matrix)))
 
 board_1 = [
     ["X", "O", " "],
@@ -108,3 +109,86 @@ def quien_gana_tateti(board):
 
 print(quien_gana_tateti(board_1))
 print(quien_gana_tateti(board_2))
+
+
+# Ejercicio 7.3
+def jugar_7_y_medio():
+    print("Bienvenido al 7 y medio")
+    deck = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12]
+
+    player_score = 0
+    player_cards = []
+
+    while player_score < 7.5:
+
+        card = random.choice(deck)
+        player_cards.append(card)
+        card_score = card
+        if card > 7:
+            card_score = 0.5
+        player_score += card_score
+
+        print(f"\nTe toco {card}, tu puntaje es {player_score}")
+
+        if player_score > 7.5:
+            print("Perdiste!")
+            break
+
+        user_input = input("¿Querés otra carta? (s/n): ")
+
+        if user_input == "n":
+            break
+
+    print(f"\nTu puntaje final es {player_score}")
+    print("Cartas repartidas:", player_cards)
+
+
+jugar_7_y_medio()
+
+
+def tiene_alguna_letra_minuscula(c: str) -> bool:
+    for caracter in c:
+        if caracter >= "a" and caracter <= "z":
+            return True
+    return False
+
+
+c = "PALOMA"
+print(tiene_alguna_letra_minuscula(c))
+
+
+def tiene_alguna_letra_mayuscula(c: str) -> bool:
+    for caracter in c:
+        if caracter >= "A" and caracter <= "Z":
+            return True
+    return False
+
+
+c = "pali"
+print(tiene_alguna_letra_mayuscula(c))
+
+
+def tiene_algun_numero(c: str) -> bool:
+    for caracter in c:
+        if caracter >= "0" and caracter <= "9":
+            return True
+    return False
+
+
+c = "pal2i"
+print(tiene_algun_numero(c))
+
+
+def fortaleza_contraseña() -> str:
+    contraseña = input("Deposite su contraseña aquí: ")
+    if (
+        len(contraseña) > 8
+        and tiene_alguna_letra_mayuscula(contraseña)
+        and tiene_algun_numero(contraseña)
+        and tiene_alguna_letra_minuscula(contraseña)
+    ):
+        return "VERDE"
+    elif 5 < len(contraseña):
+        return "AMARILLO"
+    else:
+        return "ROJO"
