@@ -91,7 +91,7 @@ def quien_gana_tateti(board):
         if row[0] == row[1] == row[2] and row[0] != " ":
             return map[row[0]]
 
-    # check column
+    # check columns
     for column in transpuesta(board):
         if column[0] == column[1] == column[2] and column[0] != " ":
             return map[column[0]]
