@@ -296,4 +296,43 @@ clients.put(("Tercero", 3, True, False))
 
 print(atencion_a_clientes(clients).queue)
 
+diccionario: dict[str, int] = {"jere": 11, "manu": 22}
+
+
 # Dictionaries / Diccionarios
+# Ejercicio 17
+# eg [("Juancito", 10), ("Sofi", 8), ("Manu", 11), ("Manu", 22), ("Jere", 6), ("Jere", 4)] : notas
+def apariciones_y_suma(notas: list[tuple[str, float]], estudiante: str):
+    apariciones: int = 0
+    suma: int = 0
+    for nota in notas:
+        if nota[0] == estudiante:
+            apariciones += 1
+            suma += nota[1]
+
+    return [apariciones, suma]
+
+
+def calcular_promedio_por_estudiante(notas: list[tuple[str, float]]):
+    promedios: dict[str, float] = {}
+
+    for nota in notas:
+        nombre: str = nota[0]
+        res: list[int] = apariciones_y_suma(notas, nombre)
+        if not (nombre in promedios.keys()):
+            print(nombre, res)
+            promedios[nombre] = res[1] / res[0]
+
+    return promedios
+
+
+notas = [
+    ("Juancito", 10),
+    ("Sofi", 8),
+    ("Manu", 11),
+    ("Manu", 22),
+    ("Jere", 6),
+    ("Jere", 4),
+]
+
+print(calcular_promedio_por_estudiante(notas))

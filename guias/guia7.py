@@ -18,6 +18,15 @@ matrix = [
 ]
 
 
+# Ejercicio 5.1
+def pertenece_a_cada_uno(matriz: list[list[int]], num: int):
+    res: list[bool] = []
+    for fila in matrices:
+        res.append(pertenece(fila, num))
+
+    return res
+
+
 # Ejercicio 6.1
 def es_matriz(matrix):
     if not matrix:
@@ -192,3 +201,6 @@ def fortaleza_contraseña() -> str:
         return "AMARILLO"
     else:
         return "ROJO"
+
+
+fortaleza_contraseña()
