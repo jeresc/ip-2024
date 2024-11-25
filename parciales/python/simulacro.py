@@ -112,6 +112,21 @@ def reordenar_cola_primero_pesados(
     return ordered_packages
 
 
+packages: Queue[tuple[str, int]] = Queue()
+packages.put(("1", 1))
+packages.put(("2", 2))
+packages.put(("3", 3))
+packages.put(("4", 4))
+packages.put(("5", 5))
+packages.put(("6", 6))
+packages.put(("7", 7))
+
+print(
+    "[reordenar_cola_primero_pesados]",
+    reordenar_cola_primero_pesados(packages, 4).queue,
+)
+
+
 """
 4) Matriz pseudo ordenada [2 puntos]
  

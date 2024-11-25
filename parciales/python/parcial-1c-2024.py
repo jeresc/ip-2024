@@ -101,6 +101,27 @@ def torneo_de_gallinas(estrategias: dict[str, str]) -> dict[str, int]:
     return puntajes
 
 
+torneo_de_gallinas(
+    {
+        "Juan": "me desvio siempre",
+        "Pedro": "me la banco y no me desvio",
+        "Maria": "me desvio siempre",
+        "Jose": "me la banco y no me desvio",
+    }
+)
+print(
+    "[torneo_de_gallinas]",
+    torneo_de_gallinas(
+        {
+            "Juan": "me desvio siempre",
+            "Pedro": "me la banco y no me desvio",
+            "Maria": "me desvio siempre",
+            "Jose": "me la banco y no me desvio",
+        }
+    ),
+)
+
+
 """
 3) Cuasi Ta-Te-Ti (2 puntos)
 Ana y Beto juegan al Ta-Te-Ti-Facilito. El juego es en un tablero cuadrado de lado entre 5 y 10. Cada jugador va poniendo su
@@ -152,6 +173,25 @@ def quien_gano_el_tateti_facilito(tablero: list[list[str]]) -> int:
     return 0
 
 
+tablero = [
+    ["X", "O", "X", "O", "X"],
+    ["X", "O", "X", "O", "X"],
+    ["X", "O", "X", "O", "X"],
+    ["X", "O", "X", "O", "X"],
+    ["X", "O", "X", "O", "X"],
+]
+
+tablero_2 = [
+    ["X", "O", "X", "O", "X"],
+    ["O", "X", "O", "X", "O"],
+    ["X", "O", "X", "O", "X"],
+    ["O", "X", "O", "X", "O"],
+    ["X", "O", "X", "O", "X"],
+]
+
+print("[quien_gano_el_tateti_facilito]", quien_gano_el_tateti_facilito(tablero))
+print("[quien_gano_el_tateti_facilito]", quien_gano_el_tateti_facilito(tablero_2))
+
 """
 4) Cuántos palíndromos sufijos (2 puntos)
 Decimos que una palabra es palíndromo si se lee igual de izquierda a derecha que de derecha a izquierda. Se nos pide
@@ -163,27 +203,26 @@ problema cuantos_sufijos_son_palindromos(in texto:String) : Z{
 """
 
 
+def reverse_string(s: str) -> str:
+    reversed: str = ""
+    for i in range(len(s) - 1, -1, -1):
+        reversed += s[i]
+    return reversed
+
+
 def cuantos_sufijos_son_palindromos(texto: str) -> int:
     count: int = 0
-    i, j = 0, len(texto) - 1
+    sufix: str = ""
 
-    while i < j:
-        if texto[i] == " ":
-            i += 1
-            continue
-        if texto[j] == " ":
-            j -= 1
-            continue
+    for i in range(len(texto) - 1, -1, -1):
+        sufix = texto[i] + sufix
+        if sufix == reverse_string(sufix):
+            count += 1
 
-        if texto[i] != texto[j]:
-            return count
-
-        i += 1
-        j -= 1
-        count += 1
-
-    return count
+    return count - 1
 
 
-print(cuantos_sufijos_son_palindromos("anita lava la tina"))
-print(cuantos_sufijos_son_palindromos("anita lava la tina y se va"))
+print(
+    "[cuantos_sufijos_son_palindromos]",
+    cuantos_sufijos_son_palindromos("anana"),
+)
